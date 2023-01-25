@@ -69,7 +69,9 @@ function App() {
   }
 
   return (
+
     <div className="App" data-theme="cyberpunk">
+          <div className="character-card">
       <div className="text-3xl font-bold underline">
         Your Carbon Warrior
         <img className="character" src={character} alt="character" />
@@ -116,6 +118,34 @@ function App() {
           <h2>{trees} trees!</h2>
         </div>
       </div>
+
+
+
+      <div class="card w-96 h-96 bg-primary text-primary-content">
+        <div class="card-body">
+          <h1 className="card-title">Calculate Number of Trees!</h1>
+          <label className="transport"> No. Sheets Of Paper: </label>
+          <input onChange={handleChangeTree} />
+          <button className="btn" onClick={onClickTree}>
+            Tree Equivalent
+          </button>
+        </div>
+        <h3>{trees}</h3>
+      </div>
+
+
+      <div class="card w-96 h-96 bg-primary text-primary-content">
+        <div class="card-body">
+          <h1 className="card-title">Calculate Number of Trees!</h1>
+          <label className="transport"> No. Sheets Of Paper: </label>
+          <input onChange={handleChangeTree} />
+          <button className="btn" onClick={onClickTree}>
+            Tree Equivalent
+          </button>
+        </div>
+        <h3>{trees}</h3>
+      </div>
+      </div>     
     </div>
   );
 }
