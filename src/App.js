@@ -4,41 +4,65 @@ import { useState, useRef, useEffect } from "react";
 
 function App() {
   const [input, setInput] = useState("");
+  const[carbonFootprint, setCarbonFootprint] = useState("")
+  const [weight, setWeight] = useState("");
+  const[trees, setNumberOfTrees] = useState("")
 
   const transportType = useRef();
+  const unitType = useRef();
+
 
   function handleChange(e) {
     const text = e.target.value;
     setInput(text);
     console.log(text);
   }
+
+  
+  function handleChangeTree(e) {
+    const text = e.target.value;
+    setWeight(text * 0.005);
+    console.log(text);
+  }
   
   async function onClick() {
-    console.log(transportType.current.value);
 
-    const headers = {
+    const response = await fetch(`https://app.trycarbonapi.com/api/publicTransit`, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + process.env.API_KEY
+        accept: "application/json",
+        "content-type": "application/json",
+        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmIzN2UwYWVkNzY4Y2JkM2IzOGM3ZTI2MGY4MzY3NGM0ZDBhMzc3YTY4ZDkzNzc0NTI5YTBlZDNiOWQyYTI5NWRlZWE0ODUxMzVhNDFkY2IiLCJpYXQiOjE2NzQ2NDQxMTIsIm5iZiI6MTY3NDY0NDExMiwiZXhwIjoxNzA2MTgwMTEyLCJzdWIiOiIzMTM0Iiwic2NvcGVzIjpbXX0.VNfj4FryVeqpAvpwoRnWtMnwt6hKDycdn_ljb9An5vkX9eXKn-N0nO2Y8y8zXqNckqFh712cehFV8HQtwhDgeg"
       },
-      data:JSON.stringify( {
-        distance: Number(input),
-        type: transportType.current.value
+      body:JSON.stringify( {
+        "distance": Number(input),
+        "type": transportType.current.value
       })
-    }
-    const response = await fetch(`https://app.trycarbonapi.com/api/publicTransit`, headers)
+    })
     const data = await response.json()
-    console.log("RESPONSE: " + data)
+    setCarbonFootprint(data.carbon)
   }
 
-  /* curl --request POST
-  --url https://app.trycarbonapi.com/api/publicTransit
-  --header 'Authorization: Bearer API_KEY'
-  --data '{
-      "distance": 500,
-      "type": Taxi
-      }'
-  */
+  async function onClickTree() {
+
+    const response = await fetch(`https://app.trycarbonapi.com/api/treeEquivalent`, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmIzN2UwYWVkNzY4Y2JkM2IzOGM3ZTI2MGY4MzY3NGM0ZDBhMzc3YTY4ZDkzNzc0NTI5YTBlZDNiOWQyYTI5NWRlZWE0ODUxMzVhNDFkY2IiLCJpYXQiOjE2NzQ2NDQxMTIsIm5iZiI6MTY3NDY0NDExMiwiZXhwIjoxNzA2MTgwMTEyLCJzdWIiOiIzMTM0Iiwic2NvcGVzIjpbXX0.VNfj4FryVeqpAvpwoRnWtMnwt6hKDycdn_ljb9An5vkX9eXKn-N0nO2Y8y8zXqNckqFh712cehFV8HQtwhDgeg"
+      },
+      body:JSON.stringify( {
+        "weight": Number(weight),
+        "unit": "kg"
+      })
+    })
+    const data = await response.json()
+    setNumberOfTrees(data["Number Of Trees"])
+    console.log(data)
+  }
+
+
 
   return (
     <div className="App">
@@ -63,6 +87,17 @@ function App() {
           </select>
         </div>
         <button onClick={onClick}>Get Your Carbon Footprint</button>
+      </div>
+      <div>
+        <h3>{carbonFootprint}</h3>
+      </div>
+     
+
+      <div>
+      <label className="transport"> No. Sheets Of Paper: </label>
+      <input onChange={handleChangeTree} />
+          <button onClick={onClickTree}>Tree Equivalent</button>
+          <h3>{trees}</h3>
       </div>
     </div>
   );
