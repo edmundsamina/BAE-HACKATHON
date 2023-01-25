@@ -78,7 +78,7 @@ function App() {
       <div className="carbon-footprint-cards">
       <div className="card w-96 h-96 bg-primary text-primary-content ">
         <div class="card-body">
-          <h2 class="card-title">Calculate Your Travel Footprint!</h2>
+          <h2 class="card-title">Your Public Transport Footprint!</h2>
           <input onChange={handleChange} placeholder="Enter Distance in KM" />
 
           <label className="transport"> Transport-Type: </label>
@@ -123,7 +123,7 @@ function App() {
 
       <div class="card w-96 h-96 bg-primary text-primary-content">
         <div class="card-body">
-          <h1 className="card-title">Calculate Number of Trees!</h1>
+          <h1 className="card-title">Your Car Footprint!</h1>
           <label className="transport"> No. Sheets Of Paper: </label>
           <input onChange={handleChangeTree} />
           <button className="btn" onClick={onClickTree}>
@@ -137,10 +137,21 @@ function App() {
       <div class="card w-96 h-96 bg-primary text-primary-content">
         <div class="card-body">
           <h1 className="card-title">Calculate Number of Trees!</h1>
-          <label className="transport"> No. Sheets Of Paper: </label>
-          <input onChange={handleChangeTree} />
+          <input onChange={handleChangeTree} placeholder="Enter Distance in KM"/>
+          <label className="transport"> Car-Type: </label>
+          <select ref={transportType}>
+            <option value="SmallDieselCar">Taxi</option>
+            <option value="MediumDieselCar">ClassicBus</option>
+            <option value="LargeDieselCar">EcoBus</option>
+            <option value="MediumHybridCar">Coach</option>
+            <option value="LargeHybridCar">NationalTrain</option>
+            <option value="SmallPetrolCar">LightRail</option>
+            <option value="MediumPetrolCar">Subway</option>
+            <option value="LargePetrolCar">FerryOnFoot</option>
+            <option value="FerryInCar">FerryInCar</option>
+          </select>
           <button className="btn" onClick={onClickTree}>
-            Tree Equivalent
+            GET YOUR CARBON FOOTPRINT
           </button>
         </div>
         <h3>{trees}</h3>
