@@ -7,9 +7,11 @@
   background-color: white;
 }
 
-
+.character-container{
+  height: 90%;
+}
 .character {
-  height: 80%;
+  height: 60%;
 }
 
 .character-card{
@@ -24,7 +26,6 @@
   display: grid;
   height: 90%;
   grid-gap: 30px;
-  grid-template-columns: auto auto;
-  /* grid-template-columns:  minmax(0, 1fr) minmax(0, 1fr); */
-  /* grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) ; */
+  grid-template-columns:  minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) ;
 }

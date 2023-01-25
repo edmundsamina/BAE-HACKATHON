@@ -71,11 +71,11 @@ function App() {
   return (
 
     <div className="App" data-theme="cyberpunk">
-          <div className="character-card">
-      <div className="text-3xl font-bold underline">
+      <div className="character-container text-3xl font-bold underline">
         Your Carbon Warrior
         <img className="character" src={character} alt="character" />
       </div>
+      <div className="carbon-footprint-cards">
       <div className="card w-96 h-96 bg-primary text-primary-content ">
         <div class="card-body">
           <h2 class="card-title">Calculate Your Travel Footprint!</h2>
