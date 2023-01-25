@@ -1,4 +1,5 @@
 import "./App.css";
+import "./index.css";
 import character from "./images/crayon-man-with-sword.png";
 import { useState, useRef, useEffect } from "react";
 
@@ -25,6 +26,7 @@ function App() {
     console.log(text);
   }
   
+
   async function onClick() {
 
     const response = await fetch(`https://app.trycarbonapi.com/api/publicTransit`, {
@@ -60,13 +62,14 @@ function App() {
     const data = await response.json()
     setNumberOfTrees(data["Number Of Trees"])
     console.log(data)
+
   }
 
 
 
   return (
     <div className="App">
-      <div className="Character">
+      <div className="text-3xl font-bold underline">
         Your Carbon Warrior
         <img src={character} alt="character" />
       </div>
