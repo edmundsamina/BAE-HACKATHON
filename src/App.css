@@ -1,13 +1,9 @@
-.App{
+.App {
   height: 100vh;
   display: flex;
+  background-color: white;
 }
 
-.Character{
-  height: 100%;
-  width: 50%;
-}
-
-img{
-  width: 100%;
+.character {
+  height: 600px;
 }
