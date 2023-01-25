@@ -1,4 +1,5 @@
 import "./App.css";
+import "./index.css";
 import character from "./images/crayon-man-with-sword.png";
 import { useState, useRef, useEffect } from "react";
 
@@ -12,23 +13,26 @@ function App() {
     setInput(text);
     console.log(text);
   }
-  
+
   async function onClick() {
     console.log(transportType.current.value);
 
     const headers = {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + process.env.API_KEY
+        Authorization: "Bearer " + process.env.API_KEY,
       },
-      data:JSON.stringify( {
+      data: JSON.stringify({
         distance: Number(input),
-        type: transportType.current.value
-      })
-    }
-    const response = await fetch(`https://app.trycarbonapi.com/api/publicTransit`, headers)
-    const data = await response.json()
-    console.log("RESPONSE: " + data)
+        type: transportType.current.value,
+      }),
+    };
+    const response = await fetch(
+      `https://app.trycarbonapi.com/api/publicTransit`,
+      headers
+    );
+    const data = await response.json();
+    console.log("RESPONSE: " + data);
   }
 
   /* curl --request POST
@@ -42,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Character">
+      <div className="text-3xl font-bold underline">
         Your Carbon Warrior
         <img src={character} alt="character" />
       </div>
