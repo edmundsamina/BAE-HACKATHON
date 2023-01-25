@@ -70,10 +70,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="text-3xl font-bold underline">
-        Your Carbon Warrior
+      <div className="character-card">
+      <h2 className="title">Your Carbon Warrior</h2>
+
         <img className="character" src={character} alt="character" />
       </div>
+      <div className="carbon-footprint-cards">
       <div className="card w-96 h-96 bg-primary text-primary-content">
         <div class="card-body">
           <h2 class="card-title">Calculate Your Travel Footprint!</h2>
@@ -111,6 +113,34 @@ function App() {
         </div>
         <h3>{trees}</h3>
       </div>
+
+
+
+      <div class="card w-96 h-96 bg-primary text-primary-content">
+        <div class="card-body">
+          <h1 className="card-title">Calculate Number of Trees!</h1>
+          <label className="transport"> No. Sheets Of Paper: </label>
+          <input onChange={handleChangeTree} />
+          <button className="btn" onClick={onClickTree}>
+            Tree Equivalent
+          </button>
+        </div>
+        <h3>{trees}</h3>
+      </div>
+
+
+      <div class="card w-96 h-96 bg-primary text-primary-content">
+        <div class="card-body">
+          <h1 className="card-title">Calculate Number of Trees!</h1>
+          <label className="transport"> No. Sheets Of Paper: </label>
+          <input onChange={handleChangeTree} />
+          <button className="btn" onClick={onClickTree}>
+            Tree Equivalent
+          </button>
+        </div>
+        <h3>{trees}</h3>
+      </div>
+      </div>     
     </div>
   );
 }
