@@ -69,15 +69,15 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" data-theme="cyberpunk">
       <div className="text-3xl font-bold underline">
         Your Carbon Warrior
         <img className="character" src={character} alt="character" />
       </div>
-      <div className="card w-96 h-96 bg-primary text-primary-content">
+      <div className="card w-96 h-96 bg-primary text-primary-content ">
         <div class="card-body">
           <h2 class="card-title">Calculate Your Travel Footprint!</h2>
-          <input onChange={handleChange} />
+          <input onChange={handleChange} placeholder="Enter Distance in KM" />
 
           <label className="transport"> Transport-Type: </label>
           <select ref={transportType}>
@@ -95,21 +95,26 @@ function App() {
             Get Your Carbon Footprint
           </button>
         </div>
-      </div>
-      <div>
-        <h3>{carbonFootprint}</h3>
+        <div>
+          <h3>{carbonFootprint}</h3>
+        </div>
       </div>
 
       <div class="card w-96 h-96 bg-primary text-primary-content">
         <div class="card-body">
           <h1 className="card-title">Calculate Number of Trees!</h1>
-          <label className="transport"> No. Sheets Of Paper: </label>
-          <input onChange={handleChangeTree} />
+          <label className="transport"> How much paper do you use? </label>
+          <input
+            onChange={handleChangeTree}
+            placeholder="No. of pieces of paper"
+          />
           <button className="btn" onClick={onClickTree}>
             Tree Equivalent
           </button>
         </div>
-        <h3>{trees}</h3>
+        <div className="card-actions justify-end">
+          <h2>{trees} trees!</h2>
+        </div>
       </div>
     </div>
   );
